@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Bazar extends Model
@@ -16,4 +17,14 @@ class Bazar extends Model
         'date',
         'description',
     ];
+
+    public function year(): BelongsTo
+    {
+        return $this->belongsTo(Year::class);
+    }
+
+    public function month(): BelongsTo
+    {
+        return $this->belongsTo(Month::class);
+    }
 }

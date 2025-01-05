@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -48,5 +50,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function years(): BelongsToMany
+    {
+        return $this->belongsToMany(Year::class, 'user_year');
+    }
+
+    public function months(): BelongsToMany
+    {
+        return $this->belongsToMany(Month::class, 'month_user');
+    }
+
+    public function days(): HasMany
+    {
+        return $this->hasMany(Day::class);
     }
 }

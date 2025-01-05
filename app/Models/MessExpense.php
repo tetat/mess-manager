@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MessExpense extends Model
 {
@@ -18,4 +19,14 @@ class MessExpense extends Model
         'internet_bill',
         'water_bill',
     ];
+
+    public function year(): BelongsTo
+    {
+        return $this->belongsTo(Year::class);
+    }
+
+    public function month(): BelongsTo
+    {
+        return $this->belongsTo(Month::class);
+    }
 }
